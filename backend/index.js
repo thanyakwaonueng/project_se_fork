@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 //const { PrismaClient } = require('./generated/prisma');
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+
 const nodemailer = require('nodemailer')
 const { OAuth2Client } = require('google-auth-library')
 //const { requireRole } = require('./authz');
@@ -2792,3 +2793,5 @@ app.get('/', (_req, res) => res.send('🎵 API is up!'));
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+module.exports = app;
