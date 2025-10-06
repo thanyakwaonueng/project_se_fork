@@ -1,7 +1,0 @@
-package:
-  # This pattern ensures the necessary Prisma files are not stripped out
-  patterns:
-    - '**'
-    - '!node_modules/**'
-    - 'node_modules/@prisma/client/**'
-    - 'node_modules/.prisma/client/**'
