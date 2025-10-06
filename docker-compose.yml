@@ -1,0 +1,38 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env.dev
+      - .env
+
+  backend:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    env_file:
+      - .env.dev
+      - .env
+    environment:
+      DATABASE_URL: postgres://user:pass@db:5432/your_db
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: your_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+

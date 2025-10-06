@@ -1,0 +1,460 @@
+/* ==========================================================================
+   VENUE PAGE 
+   ========================================================================== */
+
+.vn-page {
+  --c-bg: #f7f7f8;           
+  --c-surface: #ffffff;       
+  --c-text: #231f20;       
+  --c-soft: #5b5b63;     
+  --c-line: #e8e8ea;        
+  --c-accent: #111111;     
+  --c-accent-ghost: #f0f0f2;  
+  --radius-lg: 16px;      
+  --radius-md: 12px;          
+  --radius-sm: 10px; 
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;  
+}
+
+.vn-page {
+  padding: 16px;
+  width: 100%;
+  padding-inline: clamp(14px, 3.2vw, 28px);   /* ร่องข้างแบบยืดหยุ่น: มือถือมีระยะห่างมากขึ้น, จอใหญ่ไม่อึดอัด */
+}
+
+/* ข้อความ/ลิงก์พื้นฐาน */
+.vn-page a { color: inherit; }
+.vn-page a:focus-visible,
+.vn-page button:focus-visible {
+  outline: 3px solid rgba(0,0,0,.14);   /* เส้นโฟกัสเพื่อการเข้าถึง */
+  outline-offset: 2px;
+}
+
+/* โหลด/เออเรอร์ */
+.vn-loading, .vn-error {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: var(--shadow-sm);
+}
+.vn-error { color: #8b0000; }
+
+/* ==========================================================================
+   HERO — ซ้าย (รูป) | กลาง (ข้อมูลหลัก) | ขวา (แผงข้อมูล)
+   ========================================================================== */
+.vn-hero {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;    
+  justify-content: center;  
+  width: 85%;
+  grid-template-columns: minmax(260px, 32%) 1fr minmax(280px, 28%);
+  gap: 50px;
+  margin-bottom: 18px;
+}
+
+/* สื่อหลัก (ภาพปกสถานที่) */
+.vn-hero-media {
+  width: 90%;
+  height: 300px;    
+  overflow: hidden;
+  border-radius: 4px; 
+}
+
+.vn-hero-media img {
+  width: 100%;
+  height: 100%;        
+  object-fit: cover;      
+  transition: transform .6s ease, filter .6s ease;
+}
+
+.vn-hero-media:hover img {
+  transform: scale(1.02);
+  filter: contrast(1.02) saturate(1.02);
+}
+
+/* เนื้อหาหลัก (ชื่อ/รายละเอียด/ปุ่ม) */
+.vn-hero-body {
+  width: 100%;
+  height: 300px; 
+  /* border-top: 1px solid #000000;  */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;     
+  gap: 3px; 
+  position: relative;  
+}
+
+
+.vn-title {
+  font-weight: bold;
+  font-size: 40px;
+  margin: 2px 0 10px;
+  text-transform: uppercase;
+}
+
+.vn-btn-img {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.vn-btn-img img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0); /* ไอคอนสีดำเริ่มต้น */
+}
+
+.vn-btn-img:hover img {
+  transform: scale(1.15);
+  /* filter: brightness(0) saturate(100%) invert(73%) sepia(29%) saturate(3745%) hue-rotate(176deg) brightness(97%) contrast(97%); */
+  opacity: 0.95;
+}
+
+
+.vn-desc {
+  color: var(--c-soft);
+  line-height: 1.6;
+  margin: 8px 0 14px;
+}
+
+/* ชิปข้อมูลสั้น ๆ (genre / price / alcohol …) */
+.vn-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: absolute;  /* ติดขอบล่างของ container */
+  bottom: 0px;        /* ระยะจากขอบล่างเท่ากับ padding */
+  left: 18px;  
+}
+
+.vn-chip {
+  font-size: 12px; 
+  background-color: #292929;
+  color: #d2d2d2;
+  border: 1px solid #e9e9e9; 
+  border-radius: 999px; 
+  padding: 5px 10px; 
+  white-space: nowrap;
+}
+
+.vn-chip-transparent {
+  font-size: 12px; 
+  color: #292929;
+  border: 1px solid #292929; 
+  border-radius: 999px; 
+  padding: 5px 10px; 
+  white-space: nowrap;
+}
+/* ปุ่มหลัก/รอง */
+.vn-actions { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 8px; 
+  margin-top: 8px; 
+  background-color: #0b57d0;
+}
+
+.vn-btn, .vn-btn-ghost {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  height: 38px; 
+  padding: 0 14px;
+  border-radius: 999px; 
+  font-weight: 700; 
+  letter-spacing: .2px;
+  border: 1px solid var(--c-accent); 
+  text-decoration: none;
+  transition: transform .12s ease, background .16s ease, color .16s ease, border-color .16s ease;
+  user-select: none;
+}
+
+.vn-btn { 
+  background: var(--c-accent); 
+  color: #fff; 
+}
+
+.vn-btn:hover { 
+  transform: translateY(-1px); 
+}
+
+.vn-btn-ghost { 
+  background: #fff; 
+  color: var(--c-accent); 
+  border-color: var(--c-line); 
+}
+
+.vn-btn-ghost:hover { 
+  background: var(--c-accent-ghost);
+  border-color: var(--c-accent); 
+}
+
+
+.vn-hero-side {
+  display: grid;
+  gap: 12px;
+}
+.vn-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 14px 12px;
+}
+.vn-card-title {
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: .3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.vn-kv {
+  display: grid;
+  grid-template-columns: 120px 1fr;  
+  gap: 8px 14px;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  /* border-top: 1px dashed var(--c-line); */
+}
+
+.vn-kv:first-of-type { 
+  border-top: 0; 
+}
+
+.vn-kv > div:first-child { 
+  color: var(--c-soft); 
+}
+
+.vn-link {
+  color: #0b57d0;
+  text-underline-offset: 2px;
+}
+.vn-link:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   SECTION(s) — บล็อกเนื้อหาภาคต่อ (Basics / Address / Links / Gallery …)
+   ========================================================================== */
+.vn-section { 
+  width: 85%;
+  margin-top: 45px;
+}
+
+.vn-section-title {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.vn-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.vn-info-block {
+  background: var(--c-surface);
+  border-top: 5px solid #000000; 
+  padding: 20px 14px 12px;
+  background-color: #f6f6f6;
+}
+
+.vn-info-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.vn-info-title-divider {
+  border-top: 1px solid #a0a0a0; 
+}
+
+.vn-text { 
+  color: var(--c-soft); 
+  font-size: 14px;
+}
+.vn-links { list-style: none; padding: 0; margin: 0; }
+.vn-links li + li { margin-top: 6px; }
+
+.vn-social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+
+.vn-social-icons img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+
+.vn-social-icons img:hover {
+  opacity: 1;
+}
+
+.vn-social-icons img {
+  width: 32px;
+  height: 32px;
+
+  transition: 0.3s;
+}
+
+
+
+/* แกลเลอรี */
+.vn-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.vn-thumb {
+  background: #f1f1f3;
+
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: var(--shadow-sm);
+}
+.vn-thumb img {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+  transition: transform .5s ease, filter .5s ease;
+}
+.vn-thumb:hover img { transform: scale(1.03); filter: contrast(1.03); }
+
+/* ==========================================================================
+   UPCOMING (Schedule look & feel แบบเดียวกับหน้า Artist แต่สโคปเฉพาะหน้า Venue)
+   ========================================================================== */
+.vn-page .a-section-title{
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 10px 2px;
+}
+.vn-page .a-panel{
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.vn-page .a-schedule-list{
+  list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;
+}
+.vn-page .a-schedule-item{
+  display: grid;
+  grid-template-columns: 170px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 10px 12px;
+}
+.vn-page .a-date{
+  font-weight: 700; color: var(--c-text);
+}
+.vn-page .a-event{ min-width: 0; }
+.vn-page .a-event-title{
+  font-weight: 700; color: var(--c-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vn-page .a-event-sub{
+  color: var(--c-soft); font-size: 13px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vn-page .a-link{
+  background: var(--c-accent); color: #fff; border: 1px solid var(--c-accent);
+  padding: 8px 12px; border-radius: var(--radius-sm); text-decoration: none; font-weight: 700;
+  transition: transform .12s ease, background .16s ease;
+}
+.vn-page .a-link:hover{ transform: translateY(-1px); }
+.vn-page .a-empty{
+  padding: 12px; text-align: center; color: var(--c-soft);
+  border: 1px dashed var(--c-line); border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   RESPONSIVE — ทำให้สวยบนจอแคบ
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .vn-hero {
+    grid-template-columns: minmax(240px, 36%) 1fr 28%;
+  }
+}
+@media (max-width: 1024px) {
+  .vn-hero {
+    grid-template-columns: 1fr;   /* เรียงลงเป็นคอลัมน์เดียว */
+  }
+  .vn-hero-side { grid-template-columns: 1fr; }
+  .vn-info-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .vn-info-grid { grid-template-columns: 1fr; }
+  .vn-page .a-schedule-item {
+    grid-template-columns: 1fr auto;     /* บีบ schedule ให้หยืดหยุ่นบนมือถือ */
+    grid-template-areas:
+      "date  btn"
+      "event btn";
+    align-items: start;
+  }
+  .vn-page .a-date { grid-area: date; }
+  .vn-page .a-event { grid-area: event; }
+  .vn-page .a-link  { grid-area: btn; }
+}
+
+@media (max-width: 768px) {
+  .vn-hero {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vn-hero-body {
+    order: 2;
+  }
+
+  .vn-hero-media {
+    order: 1;
+  }
+  .vn-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (min-width: 600px) {
+  .a-schedule-list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+/* ==========================================================================
+   REDUCED MOTION — สำหรับผู้ใช้ที่ปิดแอนิเมชัน
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .vn-hero-media img,
+  .vn-thumb img,
+  .vn-btn, .vn-btn-ghost,
+  .vn-page .a-link {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,736 @@
+/* ===================================================================
+   EventDetail.css — สไตล์สำหรับหน้า Event Detail
+   - เขียนเป็นรายคลาส ไม่ใช้ :root และไม่ใช้ global reset
+   - แบ่งส่วนด้วยคอมเมนต์ชัดเจน
+   =================================================================== */
+
+
+/* ==============================
+   1) Layout หลักของหน้า + ข้อความแจ้งเตือน
+   ============================== */
+
+.page {
+  /* max-width: 1100px; */
+  width: 90%;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+  /* background-color: #0b57d0; */
+}
+
+.note {
+  background: #fff3cd;
+  color: #664d03;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid #ffe69c;
+}
+
+.note.err {
+  background: #fde8ea;
+  color: #a6232f;
+  border: 1px solid #fac1c7;
+}
+
+.empty {
+  padding: 12px;
+  color: #6b7280;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+
+/* ==============================
+   2) ปุ่ม ลิงก์ ป้ายสถานะ
+   ============================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 4px;
+  border: 1px solid #e8e8ea;
+  background: #ffffff;
+  color: #231f20;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06);
+}
+
+.btn:hover { background: #f7f7f8; }
+
+.btn.primary {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.btn-xs {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  border: 1px solid #e8e8ea;
+  background: #fff;
+}
+
+.alink {
+  color: #0b57d0;
+  text-decoration: none;
+}
+.alink:hover { text-decoration: underline; }
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+
+/* ==============================
+   3) HERO: ชื่อ/เมตา/โปสเตอร์
+   ============================== */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.heroL .title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2px 0 6px;
+  color: #231f20;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 6px 12px;
+  align-items: center;
+  margin: 4px 0;
+}
+.kv b { color: #444; }
+.kv span, .kv a { color: #231f20; }
+
+.heroR img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  background: #f0f0f2;
+}
+.ph {
+  width: 100%;
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  border: 1px dashed #e5e7eb;
+  color: #6b7280;
+  background: #fafafa;
+}
+
+
+/* ==============================
+   4) โมดอลเชิญ/แก้ไข (InviteModal)
+   ============================== */
+
+.mdl-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.mdl {
+  width: min(820px, 96vw);
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e8e8ea;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+  padding: 14px;
+}
+
+.mdl h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.warn {
+  margin-top: 6px;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  flex: 1;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #e8e8ea;
+  padding: 0 34px 0 10px;
+  outline: none;
+}
+.search-input:focus { border-color: #9aa0a6; }
+
+.search-ico {
+  position: absolute;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  opacity: .75;
+}
+
+.search-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.artist-list {
+  margin-top: 10px;
+  max-height: 300px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.evartist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.evartist-card {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid #e8e8ea;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.evartist-card:hover { background: #f7f7f8; }
+.evartist-card.selected { outline: 2px solid #1d4ed8; }
+.evartist-card.disabled { opacity: .6; cursor: not-allowed; }
+
+.artist-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #f0f0f2;
+}
+
+.artist-info { display: grid; align-content: center; gap: 6px; }
+.artist-name { font-weight: 600; color: #231f20; }
+.artist-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+  background: #eef2ff;
+  color: #1d3bcc;
+  border: 1px solid #dfe5ff;
+  border-radius: 999px;
+}
+.pill.on {
+  background: #1d3bcc;
+  color: #ffffff;
+  border-color: #1d3bcc;
+}
+
+.frm { margin-top: 12px; }
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.grid2 label {
+  display: grid;
+  gap: 6px;
+  color: #444;
+  font-size: 14px;
+}
+
+.grid2 input[type="time"],
+.grid2 select {
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #e8e8ea;
+  padding: 0 10px;
+  outline: none;
+}
+.grid2 input[type="time"]:focus,
+.grid2 select:focus { border-color: #9aa0a6; }
+
+.duration-wrap { display: grid; gap: 8px; }
+
+.duration-chips,
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #e8e8ea;
+  background: #fff;
+  font-size: 12px;
+}
+.chip.on,
+.chip:hover { background: #f7f7f8; }
+
+.act {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+
+/* ==============================
+   5) ส่วน VENUE + ส่วนหัวตาราง
+   ============================== */
+
+.sec { 
+  background: #ffffff;
+  border: 1px solid #e8e8ea;
+  border-radius: 4px;
+  padding: 14px;
+  margin-top: 14px;
+}
+
+.sec .h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #231f20;
+}
+
+.secHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.h2 { margin: 0; font-size: 18px; color: #231f20; }
+
+
+/* ==============================
+   6) ปุ่มหัวใจ (follow)
+   ============================== */
+
+.like {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.like::before {
+  content: "♡";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  color: #ef4444;
+}
+.like.on::before { content: "♥"; }
+
+
+/* ==============================
+   7) ตารางเวลา (BasicSchedule)
+   ============================== */
+
+.bs-wrap { margin-top: 10px; }
+
+.bs-head {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.bs-colname {
+  font-size: 13px;
+  color: #666666;
+}
+
+/* สเกลเวลา: ให้ label กระจายเต็มแนวนอนรวมปลายขวาสุด */
+.bs-scale {
+  display: flex;
+  justify-content: space-between; /* กระจายเท่า ๆ กันตั้งแต่ min ถึง max */
+  gap: 0;                         /* ไม่ต้องมี gap เพราะ space-between ดูแลให้แล้ว */
+  font-size: 12px;
+  color: #666666;
+  white-space: nowrap;
+}
+.bs-scale span { white-space: nowrap; }
+
+
+.bs-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 18px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.bs-name {
+  font-weight: 600;
+  color: #231f20;
+}
+
+.bs-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+/* ปุ่ม Cancel invite – พื้นแดงจาง / ตัวอักษรแดงเข้ม */
+.btn-xs.cancel {
+  display: inline-block;
+  padding: 3px;        /* = .st */
+  font-size: 11px;         /* = .st */
+  /* line-height: 1.2;        = .st (โดยประมาณ) */
+  height: auto;            /* ไม่บังคับความสูง */
+  border-radius: 999px;    /* เม็ดกลมเหมือนกัน */
+  white-space: nowrap;
+  background: #fee2e2;     /* แดงจาง */
+  color: #b91c1c;          /* แดงเข้ม */
+  /* border: 1px solid #fecaca; */
+  /* vertical-align: middle;  จัดแนวกับ badge */
+}
+
+/* Hover: พื้นแดงเข้ม ตัวอักษรขาว */
+.btn-xs.cancel:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* โฟกัส: ให้เห็นขอบชัดนิดหนึ่ง */
+.btn-xs.cancel:focus-visible {
+  outline: 2px solid #ef4444;
+  outline-offset: 1px;
+}
+
+.st {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+.st.ok   { background: #e6f9f0; color: #0f766e; }
+.st.no   { background: #fde8ea; color: #b91c1c; }
+.st.wait { background: #fff7ed; color: #b45309; }
+
+.bs-track {
+  position: relative;
+  height: 40px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f1f1f4, #f6f6f8);
+  border: 1px solid #e8e8ea;
+  overflow: hidden;
+}
+
+.bs-bar {
+  position: absolute;
+  top: 4px;
+  height: 32px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #ffffff;
+  white-space: nowrap;
+  padding: 0 8px;
+  border: none;
+  cursor: default;
+}
+
+.bs-bar.ok   { background: #10b981; }  /* ACCEPTED */
+.bs-bar.no   { background: #ef4444; }  /* DECLINED */
+.bs-bar.wait { background: #3b82f6; }  /* PENDING/อื่น ๆ */
+
+.bs-bar.tbd {
+  position: absolute;
+  top: 4px;
+  height: 32px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  color: #374151;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+
+/* ==============================
+   8) รูปภาพภายในหน้า (จำกัดสCOPE)
+   ============================== */
+
+.page img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==============================================================
+   HERO แบบภาพพื้นหลังเข้ม + วางโปสเตอร์ด้านขวา
+   ============================================================== */
+
+.ed-hero {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 18px;
+    /* เพิ่มความมืดด้วย blend */
+  /* background-color: #0a0a0a; 
+  background-blend-mode: multiply;  */
+}
+
+/* เลเยอร์ทับให้ภาพมืดลง */
+.ed-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.8));
+}
+
+/* HERO container */
+.ed-hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 16px;
+  /* เดิมเป็น align-items: center; → ให้ยืดเต็มสูง */
+  align-items: stretch;         
+  padding: 18px;
+  min-height: 320px;            /* ให้มีความสูงขั้นต่ำเท่ากับกรอบพื้นหลัง */
+}
+
+
+.ed-hero-left {
+  color: #f5f6f7;
+}
+
+.ed-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ed-title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+
+.ed-meta {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 6px 12px;
+  align-items: center;
+  margin-top: 20px;
+  color: #e9e9ea;
+  font-size: 16px;
+}
+.ed-k { 
+    color: #d1d5db; 
+    font-weight: 600; 
+    letter-spacing: .3px; 
+}
+
+.ed-v a { 
+  color: #cbd5ff; 
+}
+
+
+.ed-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.ed-followers { color: #e9e9ea; font-size: 14px; }
+
+
+/* คอลัมน์ขวา (โปสเตอร์) ให้ยืดเต็มสูงของ .ed-hero-inner */
+.ed-hero-right {
+  display: flex;                /* ให้ลูก (img) ยืดสูงได้ */
+  align-self: stretch;          /* กันกรณี override อื่น ๆ */
+}
+
+
+/* รูปโปสเตอร์ด้านขวา */
+.ed-hero-right img {
+  width: 100%;
+  height: 100%;                 /* สำคัญ: ยืดเต็มความสูง */
+  object-fit: cover;            /* ครอบภาพไม่ให้บิด */
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  background: #0f0f12;
+}
+
+/* ==============================================================
+   INFO GRID 3 คอลัมน์ — โทนตามตัวอย่างภาพที่ 2
+   ============================================================== */
+
+.ed-info { margin-top: 16px; }
+
+.ed-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.ed-info-block {
+  background: #f6f6f6;
+  border-top: 5px solid #000000;
+  padding: 18px 16px 14px;
+}
+
+.ed-info-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  margin: 0 0 12px;
+}
+
+.ed-kv {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px 14px;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 14px;
+}
+.ed-kv > div:first-child { color: #6b7280; }
+
+.ed-text { color: #5b5b63; font-size: 14px; }
+
+/* ==============================================================
+   LIKE BUTTON ให้เข้มชัดบนพื้นหลังเข้ม (ใช้ของเดิม + ปรับนิดหน่อย)
+   ============================================================== */
+
+.like {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.like::before {
+  content: "♡";
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-size: 16px; color: #ef4444;
+  text-shadow: 0 1px 4px rgba(0,0,0,.45);
+}
+.like.on::before { content: "♥"; }
+
+/* ==============================================================
+   Responsive
+   ============================================================== */
+@media (max-width: 1024px) {
+  .ed-hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .ed-hero-right { order: -1; }
+  .ed-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+
+
+
+/* ===== Artist Schedule block look like info blocks ===== */
+.ed-schedule {
+  background: #f6f6f6;
+  border-top: 5px solid #000000;
+  padding: 18px 16px 16px;
+  /* border-radius: 12px; */
+  margin-top: 16px;
+}
+
+.ed-schedule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+
+.ed-text { white-space: pre-line; }
+
