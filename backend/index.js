@@ -7,8 +7,19 @@ require('dotenv').config({path:'.env'})
 const express = require('express');
 const cookieParser = require('cookie-parser');
 //const { PrismaClient } = require('./generated/prisma');
+// @ts-nocheck
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+
+let prisma: PrismaClient;
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
 
 const nodemailer = require('nodemailer')
 const { OAuth2Client } = require('google-auth-library')
