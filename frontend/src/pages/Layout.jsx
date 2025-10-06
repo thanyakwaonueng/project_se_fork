@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { AuthProvider } from '../util_lib/auth';
+import { AuthProvider } from '../lib/auth';
 
 export default function Layout() {
   const location = useLocation();  // ดึง path ปัจจุบัน
