@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const SECRET = process.env.JWT_SECRET || 'your_secret_key';
 require('dotenv').config({path:'.env.dev'}) //อ่านข้อมูลใน .env.dev
 require('dotenv').config({path:'.env'}) 
+const SECRET = process.env.JWT_SECRET || 'your_secret_key';
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
